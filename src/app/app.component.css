@@ -60,6 +60,10 @@
     margin-left: 60px;
   }
 
+  .containerInput {
+    padding-left: 60px;
+  }
+
   svg#rocket {
     width: 80px;
     position: absolute;
