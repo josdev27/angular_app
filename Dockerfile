@@ -14,7 +14,7 @@ COPY ./ /usr/angular-workdir
 
 # Ahora que tenemos todas las dependencias y todo el código podemos generar 
 # nuestro entregable tal y como hacíamos en el laboratorio anterior.
-RUN npm run build --prod
+RUN npm run buildProd
 
 # Llega el momento de preparar el servidor web, para ello usaremos la imágen base
 # de Nginx
