@@ -23,11 +23,11 @@ export class AppComponent {
   onSubmit(form) {
     console.log(`Obteniendo el saludo para ${form.name}`);
     this.saludoService.saludar(form.name).subscribe((res: any) => {
-      console.log(`Saludo recibido: ${res}`);
-      this.saludo = `${res}!!`;
+      console.log(`Saludo recibido: ${res.saludo}`);
+      this.saludo = `${res.saludo}!!`;
     }, err => {
       console.log('El servidor no responde. Usaremos el saludo por defecto.');
-      this.saludo = `Hello  ${form.name}!!`;
+      this.saludo = `Hello ${form.name}!!`;
     });
   }
 }
