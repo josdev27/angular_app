@@ -18,7 +18,11 @@ export class SaludoService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.get(`http://${environment.host}:8080/demo/hello?name=${nombre}`, { headers }).pipe(
+    const url = `http://${environment.host}:8080/demo/hello?name=${nombre}`;
+
+    console.log('Enviando la petición al back: ${url}');
+
+    return this.http.get(url, { headers }).pipe(
     map(resp => {
         return resp;
       }),
