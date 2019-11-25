@@ -4,8 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "setENV-dev": "eval \"echo \\\"$(cat src/environments/environment.template.ts)\\\"\" > src/environments/environment.ts",
+    "setENV-prod": "eval \"echo \\\"$(cat src/environments/environment.prod.template.ts)\\\"\" > src/environments/environment.prod.ts",
     "build": "ng build",
-    "buildProd": "ng build --prod",
+    "buildProd": "npm run-script setENV-prod && ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
