@@ -18,7 +18,7 @@ export class SaludoService {
       'Content-Type': 'application/json'
     });
 
-    const url = `http://${environment.host}:8080/demo/hello?name=${nombre}`;
+    const url = `http://${environment.API_URL}:8080/demo/hello?name=${nombre}`;
 
     console.log(`Enviando la petición al back: ${url}`);
 
