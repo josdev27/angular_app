@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,11 @@ export class SaludoService {
       'Content-Type': 'application/json'
     });
 
-    return this.http.get(`http://localhost:8080/demo/hello?name=${nombre}`, { headers }).pipe(
+    const url = `http://${environment.host}:8080/demo/hello?name=${nombre}`;
+
+    console.log(`Enviando la petición al back: ${url}`);
+
+    return this.http.get(url, { headers }).pipe(
     map(resp => {
         return resp;
       }),
