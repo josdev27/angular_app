@@ -1,6 +1,13 @@
 # Utilizamos la imagen de node como base y la denominamos build
 FROM node as build
 
+# Recogemos el argumento de entrada si existe, si no usaremos el valor por defecto (localhost)
+ARG ARG_API_URL=localhost
+
+# Asignamos a la var de entorno API_URL el valor del arg de entrada
+# Esta var de entorno la utiliza el compilador de Angular
+ENV API_URL=$ARG_API_URL
+
 # Copiamos el fichero package.json a una nueva carpeta de trabajo
 COPY ./package.json /usr/angular-workdir/
 WORKDIR /usr/angular-workdir
