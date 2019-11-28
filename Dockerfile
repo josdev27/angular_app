@@ -1,18 +1,18 @@
-# Utilizamos la imagen de node como base y la denominamos build
+# Utilizamos la imagen de node como base ya que la necesitamos para "compilar" los fuentes del proyecto Angular. Denominaremos a esta imagen "build"
 FROM node as build
 
 # Recogemos el argumento de entrada si existe, si no usaremos el valor por defecto (localhost)
 ARG ARG_API_URL=localhost
 
-# Asignamos a la var de entorno API_URL el valor del arg de entrada
-# Esta var de entorno la utiliza el compilador de Angular
+# Asignamos a la variable de entorno API_URL el valor del argumento de entrada definido en el paso anterior.
+# Esta variable de entorno la utiliza el compilador de Angular para establecerla en el momento de la "compilación"
 ENV API_URL=$ARG_API_URL
 
 # Copiamos el fichero package.json a una nueva carpeta de trabajo
 COPY ./package.json /usr/angular-workdir/
 WORKDIR /usr/angular-workdir
 
-# Lanzamos el comando npm install para que se descargue todas las dependencias
+# Lanzamos el comando npm install para que node se descargue todas las dependencias
 # definidas en nuestro fichero package.json
 RUN npm install
 
@@ -20,10 +20,10 @@ RUN npm install
 COPY ./ /usr/angular-workdir
 
 # Ahora que tenemos todas las dependencias y todo el código podemos generar 
-# nuestro entregable tal y como hacíamos en el laboratorio anterior.
+# nuestro entregable ejecutando el siguiente comando.
 RUN npm run buildProd
 
-# Llega el momento de preparar el servidor web, para ello usaremos la imágen base
+# Llega el momento de preparar el servidor web, para ello usaremos la imagen base
 # de Nginx
 FROM nginx
 
